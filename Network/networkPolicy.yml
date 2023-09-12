@@ -10,7 +10,7 @@ spec:
   - Egress
   ingress:
   - from:
-    - podSelector: {}
+    - podSelector: {node1, node2, node3}
     - nodeSelector:
         kubernetes.io/hostname: 
         - node1
