@@ -6,8 +6,8 @@ spec:
   ports:
     - port: 3306
   selector:
-    app: test
-    tier: mysql
+    app: mysql
+    tier: test
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -19,14 +19,14 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: test
-      tier: mysql
+      app: mysql
+      tier: test
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: wordpress
+        app: mysql
         tier: test
     spec:
       containers:
