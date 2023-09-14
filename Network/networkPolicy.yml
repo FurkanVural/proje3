@@ -4,12 +4,12 @@ metadata:
   name: allow-egress-to-nodes
   namespace: production
 spec:
-  podSelector: {}
+ # podSelector: {}
   policyTypes:
   - Egress
   egress:
   - to:
-    - podSelector: {}   # Allow egress traffic to all pods in the same namespace
+  #  - podSelector: {}   # Allow egress traffic to all pods in the same namespace
     - nodeSelector:
         kubernetes.io/hostname: node1   # Allow egress traffic to nodes with hostname node1
     - nodeSelector:
