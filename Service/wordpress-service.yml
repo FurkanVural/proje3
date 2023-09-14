@@ -7,7 +7,7 @@ spec:
     - port: 80
   selector:
     app: wordpress
-    tier: web
+    tier: test
   type: LoadBalancer
 
 ---
@@ -22,7 +22,7 @@ spec:
   selector:
     matchLabels:
       app: wordpress
-      tier: web
+      tier: test
   strategy:
     type: Recreate
   template:
