@@ -3,9 +3,6 @@ kind: NetworkPolicy
 metadata:
   name: allow-egress-to-nodes
   namespace: production
-runner:
-   nodeselector: 
-      role: senior
 spec:
  # podSelector: {}
   policyTypes:
