@@ -29,7 +29,7 @@ spec:
     metadata:
       labels:
         app: wordpress
-        tier: web
+        tier: test
     spec:
       containers:
       - image: wordpress:latest
