@@ -53,7 +53,7 @@ spec:
       volumes:
         - name: persistent-storage
           persistentVolumeClaim:
-            claimName: wordpress-pv-claim
+            claimName: wordpress-test-claim
       affinity:
         podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
