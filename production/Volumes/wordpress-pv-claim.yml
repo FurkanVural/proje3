@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: wordpress-pv-claim
   labels:
-    tier: test
+    tier: web
     app: wordpress
 spec:
   storageClassName: do-block-storage

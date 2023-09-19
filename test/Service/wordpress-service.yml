@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress-test-svc
+  labels: 
+    tier: test
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: wordpress
+    tier: test
+  type: LoadBalancer

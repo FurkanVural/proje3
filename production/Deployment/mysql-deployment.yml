@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+    tier: test
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+      tier: test
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mysql
+        tier: test
+    spec:
+      containers:
+      - image: mysql:5.6
+        name: mysql
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-password-f547bhm8mc
+              key: password
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: mysql-user-4t5mcf8dkm
+              key: username
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-user-password-9m7k5b4k2m
+              key: passworduser
+        - name: MYSQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: mysql-database-4f74mgddt5
+              key: database
+        resources:
+            limits:
+              memory: "1Gi"
+              cpu: "250m"
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: persistent-storage
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim

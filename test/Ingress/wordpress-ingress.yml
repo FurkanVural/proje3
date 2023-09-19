@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wordpress
+  annotations:
+    cert-manager.io/cluster-issuer: "wp-prod-issuer"
+spec:
+  ingressClassName: "nginx"
+  rules:
+  - host: wordpress.example.net
+    http:
+     paths:
+     - path: "/"
+       pathType: Prefix
+       backend:
+         service:
+           name: wordpress
+           port:
+             number: 80
+  tls:
+  - hosts:
+    - wordpress.example.net
+    secretName: wordpress-tls
