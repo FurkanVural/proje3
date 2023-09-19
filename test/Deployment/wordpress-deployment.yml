@@ -55,7 +55,7 @@ spec:
           persistentVolumeClaim:
             claimName: wordpress-pv-claim
       affinity:
-        podaffinity:
+        podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
@@ -63,4 +63,4 @@ spec:
                 operator: In
                 values:
                 - mysql
-              topologyKey: kubernetes.io/hostname
+            topologyKey: kubernetes.io/hostname
