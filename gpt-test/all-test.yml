@@ -9,7 +9,7 @@ spec:
   ports:
     - protocol: TCP
       port: 3306
-  clusterIP: None
+#  clusterIP: 
 ---
 apiVersion: v1
 kind: PersistentVolume
