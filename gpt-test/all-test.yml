@@ -58,7 +58,7 @@ spec:
          requiredDuringSchedulingIgnoredDuringExecution:
            nodeSelectorTerms:
              - matchExpressions:
-                - key: app
+                - key: mysql
                   operator: In
                   values:
                     - wordpress-mysql
@@ -133,11 +133,13 @@ spec:
        nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
-              - matchExpressions:
+            - labelSelector:
+                matchExpressions:
                 - key: app
-                 operator: In
+                  operator: In
                   values:
-                    - wordpress-mysql
+                    - mysql
+              topologyKey: kubernetes.io/hostname
 
       containers:
         - name: wordpress-container
@@ -180,7 +182,7 @@ metadata:
   namespace: test
 spec:
   rules:
-    - host: your-domain.com
+    - host: fvo.com
       http:
         paths:
           - pathType: Prefix
