@@ -139,8 +139,6 @@ spec:
                   operator: In
                   values:
                     - mysql
-              topologyKey: kubernetes.io/hostname
-
       containers:
         - name: wordpress-container
           image: wordpress:latest
