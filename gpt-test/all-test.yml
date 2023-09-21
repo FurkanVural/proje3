@@ -154,14 +154,22 @@ spec:
          operator: "Equal"
          value: "production"
          effect: "NoSchedule"
-
       affinity:
-        podAffinity:
+        nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchLabels:
-                  app: mysql
-              topologyKey: kubernetes.io/hostname
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: tier
+                    operator: In
+                    values:
+                      - production
+      #affinity:
+        #podAffinity:
+          #requiredDuringSchedulingIgnoredDuringExecution:
+          #  - labelSelector:
+         #       matchLabels:
+         #         app: mysql
+         #     topologyKey: kubernetes.io/hostname
       containers:
         - name: wordpress-container
           image: wordpress:latest
