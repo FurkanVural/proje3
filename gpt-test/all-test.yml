@@ -62,12 +62,14 @@ spec:
          value: "production"
          effect: "NoSchedule"
       affinity:
-        podAffinity:
+        nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchLabels:
-                  app: wordpress
-              topologyKey: kubernetes.io/hostname
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: tier
+                    operator: In
+                    values:
+                      - production
       containers:
         - name: mysql-container
           image: mysql:5.6
