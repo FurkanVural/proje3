@@ -40,6 +40,11 @@ spec:
       labels:
         app: mysql
     spec:
+      tolerations:
+       - key: "tier"
+         operator: "Equal"
+         value: "production"
+         effect: "NoSchedule"
       affinity:
         podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -113,6 +118,12 @@ spec:
       labels:
         app: wordpress
     spec:
+      tolerations:
+       - key: "tier"
+         operator: "Equal"
+         value: "production"
+         effect: "NoSchedule"
+
       affinity:
         podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
