@@ -160,9 +160,11 @@ spec:
             nodeSelectorTerms:
               - matchExpressions:
                   - key: tier
+                  - key: app
                     operator: In
                     values:
                       - production
+                      - mysql
       #affinity:
         #podAffinity:
           #requiredDuringSchedulingIgnoredDuringExecution:
