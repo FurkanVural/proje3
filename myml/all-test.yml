@@ -37,6 +37,7 @@ metadata:
     tier: test
     app: mysql
 spec:
+  storageClassName: standard
   accessModes:
     - ReadWriteOnce
   volumeMode: Filesystem
@@ -53,6 +54,7 @@ metadata:
     tier: test
     app: wordpress
 spec:
+  storageClassName: standard
   accessModes:
     - ReadWriteOnce
   volumeMode: Filesystem
