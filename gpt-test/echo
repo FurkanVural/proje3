@@ -1,0 +1,27 @@
+echo -n 'MYSQL_ROOT_PASSWORD' | base64
+echo -n 'MYSQL_DATABASE' | base64
+echo -n 'MYSQL_USER' | base64
+echo -n 'MYSQL_PASSWORD' | base64
+
+MYSQL_ROOT_PASSWORD: <base64-encoded-root-password>
+  MYSQL_DATABASE: <base64-encoded-database-name>
+  MYSQL_USER: <base64-encoded-username>
+  MYSQL_PASSWORD: <base64-encoded-user-password>
+
+root@ip-172-31-0-93:/home/ec2-user/proje3/gpt-test# echo -n 'MYSQL_ROOT_PASSWORD' | base64
+TVlTUUxfUk9PVF9QQVNTV09SRA==
+root@ip-172-31-0-93:/home/ec2-user/proje3/gpt-test# echo -n 'MYSQL_DATABASE' | base64
+TVlTUUxfREFUQUJBU0U=
+root@ip-172-31-0-93:/home/ec2-user/proje3/gpt-test# echo -n 'MYSQL_USER' | base64
+TVlTUUxfVVNFUg==
+root@ip-172-31-0-93:/home/ec2-user/proje3/gpt-test# echo -n 'MYSQL_PASSWORD' | base64
+TVlTUUxfUEFTU1dPUkQ=
+
+[root@proje-master-fb905d60 gpt-test]# echo -n 'MYSQL_ROOT_PASSWORD' | base64
+TVlTUUxfUk9PVF9QQVNTV09SRA==
+[root@proje-master-fb905d60 gpt-test]# echo -n 'MYSQL_DATABASE' | base64
+TVlTUUxfREFUQUJBU0U=
+[root@proje-master-fb905d60 gpt-test]# echo -n 'MYSQL_USER' | base64
+TVlTUUxfVVNFUg==
+[root@proje-master-fb905d60 gpt-test]# echo -n 'MYSQL_PASSWORD' | base64
+TVlTUUxfUEFTU1dPUkQ=
