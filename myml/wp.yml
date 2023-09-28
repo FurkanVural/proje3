@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wp-deployment
+  namespace: test
+  labels:
+    tier: test
+    app: wordpress
+spec:
+  selector:
+    matchLabels:
+      tier: test
+      app: wordpress
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        tier: test
+        app: wordpress
+    spec:
+      tolerations:
+       - key: "tier"
+         operator: "Equal"
+         value: "production"
+         effect: "NoSchedule"
+      containers:
+      - image: wordpress:5.6
+        name: wp-test
+        env:
+        - name: WORDPRESS_DB_HOST
+          value: mysql-test-svc
+        - name: WORDPRESS_DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: mysql-test-secret
+              key: MYSQL_USER
+        - name: WORDPRESS_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-test-secret
+              key: MYSQL_PASSWORD
+        - name: WORDPRESS_DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: mysql-test-secret
+              key: MYSQL_DATABASE
+        resources:
+          limits:
+            memory: "1Gi"
+            cpu: "250m"
+        ports:
+        - containerPort: 80
+          name: wp-test-port
+        volumeMounts:
+        - name: wp-test-pv
+          mountPath: /var/www/html
+      volumes:
+      - name: wp-test-pv
+        persistentVolumeClaim:
+          claimName: wp-test-claim
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - mysql
+            topologyKey: kubernetes.io/hostname

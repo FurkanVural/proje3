@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment
+  namespace: test
+  labels:
+    tier: test
+    app: mysql
+spec:
+  selector:
+    matchLabels:
+      tier: test
+      app: mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        tier: test
+        app: mysql
+    spec:
+      containers:
+      - name: mysql-test
+        image: mysql:5.6
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-test-secret
+              key: MYSQL_ROOT_PASSWORD
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: mysql-test-secret
+              key: MYSQL_USER
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-test-secret
+              key: MYSQL_PASSWORD
+        - name: MYSQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: mysql-test-secret
+              key: MYSQL_DATABASE      
+        resources:
+          limits:
+            memory: "1Gi"
+            cpu: "250m"
+        ports:
+          - containerPort: 3306
+            name: mysql-test-port
+        volumeMounts:
+          - name: mysql-test-pv
+            mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-test-pv
+          persistentVolumeClaim:
+            claimName: mysql-test-claim
