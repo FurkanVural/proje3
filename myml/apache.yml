@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: httpbin-route
+  name: wordpress-ingress
   labels:
     tier: test
     app: wordpress
