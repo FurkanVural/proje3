@@ -144,7 +144,7 @@ spec:
         app: wordpress
     spec:
       containers:
-      - image: wordpress:latest
+      - image: wordpress:latest:php8.0:fpm
         name: wp-test
         env:
         - name: WORDPRESS_DB_HOST
