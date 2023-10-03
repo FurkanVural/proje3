@@ -4,7 +4,7 @@ metadata:
   name: mysql-pv
 spec:
   capacity:
-    storage: 5Gi  # Capacity matches the PVC's requested storage
+    storage: 10Gi  # Capacity matches the PVC's requested storage
   volumeMode: Filesystem  # Filesystem is typically used
   accessModes:
     - ReadWriteOnce  # Matches the PVC's access mode
@@ -19,7 +19,7 @@ metadata:
   name: wordpress-pv
 spec:
   capacity:
-    storage: 5Gi  # Capacity matches the WordPress PVC's requested storage
+    storage: 10Gi  # Capacity matches the WordPress PVC's requested storage
   volumeMode: Filesystem  # Filesystem is typically used
   accessModes:
     - ReadWriteOnce  # Matches the WordPress PVC's access mode
