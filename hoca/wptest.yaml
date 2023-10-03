@@ -1,4 +1,34 @@
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-pv
+spec:
+  capacity:
+    storage: 5Gi  # Capacity matches the PVC's requested storage
+  volumeMode: Filesystem  # Filesystem is typically used
+  accessModes:
+    - ReadWriteOnce  # Matches the PVC's access mode
+  persistentVolumeReclaimPolicy: Retain  # Retain or Delete (matches your preference)
+  storageClassName: standard  # Name of the StorageClass to use (matches your PVC)
+  hostPath:
+    path: /var/lib/mysql  # Replace with the actual host path
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: wordpress-pv
+spec:
+  capacity:
+    storage: 5Gi  # Capacity matches the WordPress PVC's requested storage
+  volumeMode: Filesystem  # Filesystem is typically used
+  accessModes:
+    - ReadWriteOnce  # Matches the WordPress PVC's access mode
+  persistentVolumeReclaimPolicy: Retain  # Retain or Delete (matches your preference)
+  storageClassName: standard  # Name of the StorageClass to use (matches WordPress PVC)
+  hostPath:
+    path: /var/www
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mysql-test-claim
@@ -7,6 +37,7 @@ metadata:
     tier: test
     app: mysql
 spec:
+  storageClassName: standard
   accessModes:
     - ReadWriteOnce
   volumeMode: Filesystem
@@ -23,6 +54,7 @@ metadata:
     tier: test
     app: wordpress
 spec:
+  storageClassName: standard
   accessModes:
     - ReadWriteOnce
   volumeMode: Filesystem
