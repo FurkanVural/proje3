@@ -146,6 +146,7 @@ spec:
       containers:
       - image: wordpress:latest
         name: wp-test
+        command: ["/bin/bash"]
         env:
         - name: WORDPRESS_DB_HOST
           value: mysql-test-svc
