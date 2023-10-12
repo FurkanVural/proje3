@@ -88,13 +88,13 @@ spec:
         image: mysql:5.7
         env:
          - name: MYSQL_ROOT_PASSWORD
-           value: 123456
+           value: '123456'
          - name: WORDPRESS_DB_USER
-           value: 123456
+           value: '123456'
          - name: WORDPRESS_DB_PASSWORD
-           value: 123456
+           value: '123456'
          - name: WORDPRESS_DB_NAME
-           value: 123456
+           value: '123456'
         # - name: MYSQL_ROOT_PASSWORD
         #   valueFrom:
         #     secretKeyRef:
@@ -158,11 +158,11 @@ spec:
         - name: WORDPRESS_DB_HOST
           value: mysql-test-svc
         - name: WORDPRESS_DB_USER
-          value: 123456
+          value: '123456'
         - name: WORDPRESS_DB_PASSWORD
-          value: 123456
+          value: '123456'
         - name: WORDPRESS_DB_NAME
-          value: 123456
+          value: '123456'
         # - name: WORDPRESS_DB_USER
         #   valueFrom:
         #     secretKeyRef:
