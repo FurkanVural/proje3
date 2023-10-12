@@ -85,7 +85,7 @@ spec:
     spec:
       containers:
       - name: mysql-test
-        image: mysql:5.7
+        image: mysql:latest
         env:
          - name: MYSQL_ROOT_PASSWORD
            value: 'P@ssw0rd1!'
