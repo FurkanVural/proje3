@@ -115,10 +115,10 @@ spec:
         #     secretKeyRef:
         #       name: mysql-test-secret
         #       key: MYSQL_DATABASE      
-        resources:
-          limits:
-            memory: "1Gi"
-            cpu: "250m"
+        # resources:
+        #   limits:
+        #     memory: "1Gi"
+        #     cpu: "250m"
         ports:
           - containerPort: 3306
             name: mysql-test-port
@@ -178,10 +178,10 @@ spec:
         #     secretKeyRef:
         #       name: mysql-test-secret
         #       key: MYSQL_DATABASE
-        resources:
-          limits:
-            memory: "1Gi"
-            cpu: "250m"
+        # resources:
+        #   limits:
+        #     memory: "1Gi"
+        #     cpu: "250m"
         ports:
         - containerPort: 80
           name: wp-test-port
