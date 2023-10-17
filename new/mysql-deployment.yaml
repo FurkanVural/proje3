@@ -31,7 +31,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: wp-db-secrets
-              key: MYSQL_ROOT_PASSWORD
+              key: password
         ports:
           - containerPort: 3306
         volumeMounts:
