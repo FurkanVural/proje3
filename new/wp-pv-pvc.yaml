@@ -20,7 +20,7 @@ spec:
       - key: kubernetes.io/hostname
         operator: In
         values:
-        - node4
+        - ip-172-31-0-136
 ---
 
 apiVersion: v1
