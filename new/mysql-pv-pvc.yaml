@@ -2,36 +2,35 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: mysql-pv
+  labels:
+    app: mysql
 spec:
-  storageClassName: local-storage
-  claimRef:
-    name: mysql-volume
-    namespace: default
   capacity:
-    storage: 1Gi
+    storage: 6Gi
   accessModes:
     - ReadWriteOnce
-  local:
-    path: /mnt
-  nodeAffinity:
-   required:
-    nodeSelectorTerms:
-    - matchExpressions:
-      - key: kubernetes.io/hostname
-        operator: In
-        values:
-        - node01
+  persistentVolumeClaimPolicy: Recycle
+  nfs:
+    path: /
+    server: 10.255.255.10
 ---
 
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mysql-volume
-  namespace: default
+  name: mysql-test-claim
+  namespace: test
+  labels:
+    tier: test
+    app: mysql
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
+  volumeMode: Filesystem
   resources:
     requests:
-      storage: 1Gi
-  storageClassName: local-storage
+      storage: 5Gi
+  storageClassName: ""
+  selector:
+    matchLabels:
+      app: mysql
