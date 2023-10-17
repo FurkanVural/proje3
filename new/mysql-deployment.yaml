@@ -14,6 +14,11 @@ spec:
       labels:
         app: mysql
     spec:
+      tolerations:
+      - key: "tier"
+        operator: "Equal"
+        value: "production"
+        effect: "NoSchedule"
       containers:
       - name: database
         image: mysql:5.7
