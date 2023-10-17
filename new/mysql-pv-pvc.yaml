@@ -2,12 +2,11 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: mysql-pv
-  namespace: test
 spec:
   storageClassName: local-storage
   claimRef:
     name: mysql-volume
-    namespace: test
+    namespace: default
   capacity:
     storage: 1Gi
   accessModes:
@@ -28,7 +27,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mysql-volume
-  namespace: test
+  namespace: default
 spec:
   accessModes:
   - ReadWriteOnce
