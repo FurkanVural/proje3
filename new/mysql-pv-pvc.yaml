@@ -9,7 +9,7 @@ spec:
     storage: 6Gi
   accessModes:
     - ReadWriteOnce
-  persistentVolumeClaimPolicy: Recycle
+  persistentVolumeReclaimPolicy: Recycle
   nfs:
     path: /
     server: 10.255.255.10
