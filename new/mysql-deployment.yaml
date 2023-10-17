@@ -26,9 +26,11 @@ spec:
           # mount volume
           - "--ignore-db-dir=lost+found"
         # add root password
-        envFrom:
-          - secretRef:
+        env:
+        - name: MYSQL-ROOT-PASSWORD
+          valueFrom:
               name: wp-db-secrets
+              key: MYSQL_ROOT_PASSWORD
         ports:
           - containerPort: 3306
         volumeMounts:
