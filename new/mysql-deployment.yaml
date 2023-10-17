@@ -29,6 +29,7 @@ spec:
         env:
         - name: MYSQL-ROOT-PASSWORD
           valueFrom:
+            secretKeyRef:
               name: wp-db-secrets
               key: MYSQL_ROOT_PASSWORD
         ports:
