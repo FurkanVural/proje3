@@ -4,15 +4,18 @@ metadata:
   name: mysql
   labels:
     app: mysql
+    tier: test
   namespace: test
 spec:
   replicas: 1
   selector:
     matchLabels:
+      tier: test
       app: mysql
   template:
     metadata:
       labels:
+        tier: test
         app: mysql
     spec:
       containers:
