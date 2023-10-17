@@ -2,35 +2,28 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: mysql-pv
-  labels:
-    app: mysql
 spec:
+  storageClassName: local-storage
+  claimRef:
+    name: mysql-volume
+    namespace: default
   capacity:
-    storage: 6Gi
+    storage: 1Gi
   accessModes:
     - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Recycle
-  nfs:
-    path: /
-    server: 10.255.255.10
+  local:
+    path: /mnt
 ---
 
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mysql-test-claim
-  namespace: test
-  labels:
-    tier: test
-    app: mysql
+  name: mysql-volume
+  namespace: default
 spec:
   accessModes:
-    - ReadWriteOnce
-  volumeMode: Filesystem
+  - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi
-  storageClassName: ""
-  selector:
-    matchLabels:
-      app: mysql
+      storage: 1Gi
+  storageClassName: local-storage
